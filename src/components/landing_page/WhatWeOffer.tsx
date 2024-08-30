@@ -29,7 +29,7 @@ const WhatWeOffer = () => {
             </Reveal>
             <div className='flex flex-col max-w-7xl gap-y-3 sm:flex-row px-4 lg:px-16 mt-4 justify-center gap-x-3 w-full'>
                 {offers.map((offer, index) => 
-                <Reveal type='scale' direction='left' delay={0.2 * index} fullWidth={true}>
+                <Reveal key={index} type='scale' direction='left' delay={0.2 * index} fullWidth={true}>
                   <OfferBox  key={index} title={offer.title} price={offer.price} />
                 </Reveal>
                 )}

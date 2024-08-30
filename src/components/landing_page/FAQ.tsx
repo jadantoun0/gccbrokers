@@ -52,7 +52,7 @@ const FAQ = () => {
             </Reveal>
             <div className='flex max-w-4xl justify-center flex-col'>
                 {faqs.map((faq, index) => (
-                    <Reveal type='fade' delay={0.1 * index} direction='right'>
+                    <Reveal key={index} type='fade' delay={0.1 * index} direction='right'>
                         <FAQItem key={index} question={faq.question} answer={faq.answer} />
                     </Reveal>
                 ))}
