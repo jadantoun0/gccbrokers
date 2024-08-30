@@ -35,7 +35,7 @@ export const useFetch = <T,>(url: string, page: number, limit: number): FetchRes
       // This will run only once, on initial render
       isMounted.current = true;
     }
-  }, [page, fetchData]);
+  }, [page]);
 
   return { data, loading, error };
 };
