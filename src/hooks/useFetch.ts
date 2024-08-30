@@ -11,8 +11,6 @@ export const useFetch = <T,>(url: string, page: number, limit: number): FetchRes
   const [data, setData] = useState<T[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<Error | null>(null);
-  
-  const isMounted = useRef(false);
 
   const fetchData = async () => {
     try {
@@ -27,14 +25,7 @@ export const useFetch = <T,>(url: string, page: number, limit: number): FetchRes
   };
 
   useEffect(() => {
-    // Check if it's the first mount
-    if (isMounted.current) {
-      // This will run on page changes
       fetchData();
-    } else {
-      // This will run only once, on initial render
-      isMounted.current = true;
-    }
   }, [page]);
 
   return { data, loading, error };
