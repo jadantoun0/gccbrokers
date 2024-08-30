@@ -48,7 +48,7 @@ const FAQ = () => {
     <div className='bg-white py-7 mx-3'>
         <div className='flex items-center justify-center flex-col'>
             <Reveal type='fade'>
-                <p className='font-bold py-12 text-4xl flex items-center justify-center text-center text-primaryColor'>FREQUENTLY ASKED QUESTIONS</p>
+                <p className='font-bold py-12  text-3xl lg:text-4xl flex items-center justify-center text-center text-primaryColor'>FREQUENTLY ASKED QUESTIONS</p>
             </Reveal>
             <div className='flex max-w-4xl justify-center flex-col'>
                 {faqs.map((faq, index) => (
