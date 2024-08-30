@@ -45,7 +45,7 @@ const FAQ = () => {
     
 
   return (
-    <div className='bg-white py-7'>
+    <div className='bg-white py-7 mx-3'>
         <div className='flex items-center justify-center flex-col'>
             <Reveal type='fade'>
                 <p className='font-bold py-12 text-4xl flex items-center justify-center text-center text-primaryColor'>FREQUENTLY ASKED QUESTIONS</p>

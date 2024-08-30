@@ -6,8 +6,7 @@ import ProductsTable from '@/components/products/product_table';
 
 const ProductsPage = () => {
   return (
-    <div className='bg-gradient-to-r from-[#1a314b] via-[#103b61] to-[#092344]'>
-      <Navbar />
+    <main className='bg-gradient-to-r from-[#1a314b] via-[#103b61] to-[#092344]'>
       <div className='h-40'></div>
       <div>
         <Reveal type='fade'>
@@ -24,8 +23,7 @@ const ProductsPage = () => {
       <Reveal type='fade' direction='right'>
         <ProductsTable />
       </Reveal>
-      <Footer />
-    </div>
+    </main>
   )
 }
 

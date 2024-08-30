@@ -10,14 +10,12 @@ import WhoAreWe from "@/components/landing_page/WhoAreWe";
 export default function Home() {
   return (
     <main>
-      <Navbar />
       <PromoSection />
       <WhoAreWe />
       <WhatWeDo />
       <WhatWeOffer />
       <ContactUs />
       <FAQ />
-      <Footer />
     </main>
   );
 }

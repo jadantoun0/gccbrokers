@@ -5,6 +5,8 @@ import {Bars3Icon, XMarkIcon} from '@heroicons/react/24/outline'
 import { Dialog, DialogPanel, PopoverGroup } from '@headlessui/react'
 import Link from 'next/link'
 import Image from 'next/image'
+import { usePathname } from 'next/navigation'
+
 
 const pages = [
   {
@@ -36,6 +38,8 @@ interface NavbarProps {
 export const Navbar : React.FC<NavbarProps> = ({className}) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [customClassName, setCustomClassName] = useState("");
+  const pathname = usePathname(); 
+
 
   const handleScroll = () => {
     if (window.scrollY > 50) {
@@ -62,7 +66,7 @@ export const Navbar : React.FC<NavbarProps> = ({className}) => {
             {
               customClassName?.includes('bg-white') ?
             <Image src={"/logo/logo.png"} alt='logo' width={150} height={20} /> : 
-            <Image src={"/logo/logo white.png"} alt='logo' width={150} height={20} /> 
+            <Image src={"/logo/logo white.png"} alt='logo' priority width={150} height={20} /> 
             }
           </a>
         </div>
@@ -78,7 +82,14 @@ export const Navbar : React.FC<NavbarProps> = ({className}) => {
         </div>
         <PopoverGroup className={`hidden lg:flex ${customClassName?.includes('bg-white') ? "text-black" : "text-white"} lg:gap-x-12`}>
           {
-            pages.map((page, index) => <Link key={index} href={page.href}>{page.name}</Link>)
+            pages.map((page, index) => 
+              <div key={index}>
+                <Link href={page.href}>{page.name}</Link>
+                {
+                  pathname === page.href && <div className={`h-[1px] mt-1 ${customClassName.includes('bg-white') ? 'bg-primaryColor' : 'bg-white'}`}></div>
+                }
+              </div>
+          )
           }
         </PopoverGroup>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
@@ -96,8 +107,8 @@ export const Navbar : React.FC<NavbarProps> = ({className}) => {
           <div className="flex items-center justify-between">
             <Link href="#" className="-m-1.5 p-1.5">
               <span className="sr-only">GCC Brokers</span>
-              <Image src="/logo/logo.png" height={30} width={140} alt='logo' />
-            </Link>
+              <Image src="/logo/logo.png" height={60} width={180} alt='logo' />
+            </Link> 
             <button
               type="button"
               onClick={() => setMobileMenuOpen(false)}
@@ -107,26 +118,32 @@ export const Navbar : React.FC<NavbarProps> = ({className}) => {
               <XMarkIcon aria-hidden="true" className="h-6 w-6" />
             </button>
           </div>
-          <div className="mt-6 flow-root bg-red-200">
+          <div className="mt-6 flow-root">
             <div className="-my-6 divide-y divide-gray-500/10">
-              <div className={`py-6 flex ${ customClassName?.includes('bg-white') ? "text-green" : "text-white"} flex-col`}>
+              <div className={`py-6 flex flex-col`}>
                 {
-                  pages.map((page, index) => <Link key={index} href={page.href} className=' hover:bg-gray-100 -mx-3 px-3 rounded-md py-4'>{page.name}</Link> )
+                  pages.map((page, index) => 
+                    <div 
+                      onClick={() => setMobileMenuOpen(false)}
+                      key={index} className='border hover:bg-gray-100 active:bg-gray-50 cursor-pointer my-3 flex justify-center rounded-sm items-center'>
+                      <Link href={page.href} className=' -mx-3 px-3 rounded-md py-2'>{page.name}</Link> 
+                    </div>
+                )
                 }
               </div>
-              <div className="py-6">
-                <a
+              <div className="py-6 flex flex-col gap-y-4 mx-3">
+                <Link
                   href="#"
-                  className="-mx-3 block rounded-lg px-3 py-4 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                  className="-mx-3 border rounded-sm  cursor-pointer px-3 py-2 flex items-center justify-center text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                 >
                   Log in
-                </a>
-                <a
+                </Link>
+                <Link
                   href="#"
-                  className="-mx-3 block rounded-lg px-3 py-4 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                  className="-mx-3 border flex items-center cursor-pointer justify-center rounded-sm px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                 >
                   Register
-                </a>
+                </Link>
               </div>
             </div>
           </div>
